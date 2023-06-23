@@ -46,18 +46,35 @@
             style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;"
             id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
 
-      @foreach($datas as $u)
       <div class="header">
-         <h2 class="animated fadeInDown">Welcome to <span>King Satta</span></h2>
-         <h3 style="color:black;">Today Super Fast Live Satta Results And Chart of June 2023 for Desawar, Desawar King,
-            Chandi Bazar, Nashik Super, Delhi Bazar, Shrimadhopur, Shri Ganesh, Kanpur City, Faridabad, Inderlok,
-            Ghaziabad, Goa Express, Khiladi 786 and Gali from various websites
-            Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company etc.
-            </h4><br>
-            <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal"
-                  data-target="#myModal">Read More</a></p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1"
-               class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
+         <img src="A King logo.png" height="150px">
+         <h2 class="animated fadeInDown">Welcome to <span>A King Satta</span></h2>
+         <h3 style="color:black;">Today Super Fast Live Satta Results And Chart of June 2023 for
+            <?php
+            $company = DB::table('category')->get();
+
+            $company = json_decode(json_encode($company), 'true');
+
+            ?>
+            @foreach ($company as $row)
+            <?php
+            //   print_r($row);
+            ?>
+
+            {{ strtoupper($row['name']) }},
+
+
+
+
+            @endforeach
+            Company etc.
+         </h3><br>
+
+         @foreach($datas as $u)
+         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal"
+               data-target="#myModal">Read More</a></p>
+         <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1"
+            class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
 
       </div>
       @endforeach
