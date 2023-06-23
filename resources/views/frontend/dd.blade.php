@@ -4,7 +4,6 @@
 <head>
    <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
    <title>King Satta - Index</title>
    <meta content="" name="descriptison">
    <meta content="" name="keywords">
@@ -39,21 +38,27 @@
 </head>
 
 <body>
- <!-- ======= Hero Section ======= -->
+   <!-- ======= Hero Section ======= -->
    <section id="hero" class="d-flex justify-cntent-center align-items-center">
 
       <!-- Slide 1 -->
-<a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;" id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
+      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input
+            style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;"
+            id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
 
       @foreach($datas as $u)
       <div class="header">
          <h2 class="animated fadeInDown">Welcome to <span>King Satta</span></h2>
-         <h4 style="color:white;">Today Super Fast Live Satta Results And Chart of June 2023 for Desawar, Desawar King, Chandi Bazar, Nashik Super, Delhi Bazar, Shrimadhopur, Shri Ganesh, Kanpur City, Faridabad, Inderlok, Ghaziabad, Goa Express, Khiladi 786 and Gali from various websites
-Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company etc.
-</h4><br>
-         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal" data-target="#myModal">Read More</a></p>
-         <a href="#" class="btn-get-started animated fadeInUp" >फॉर्म लिंक.</a>
-        
+         <h3 style="color:black;">Today Super Fast Live Satta Results And Chart of June 2023 for Desawar, Desawar King,
+            Chandi Bazar, Nashik Super, Delhi Bazar, Shrimadhopur, Shri Ganesh, Kanpur City, Faridabad, Inderlok,
+            Ghaziabad, Goa Express, Khiladi 786 and Gali from various websites
+            Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company etc.
+            </h4><br>
+            <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal"
+                  data-target="#myModal">Read More</a></p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1"
+               class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
+
       </div>
       @endforeach
 
@@ -87,7 +92,6 @@ Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company e
       @endforeach
 
    </section><!-- End Hero -->
-
    <main id="main">
 
 
@@ -97,7 +101,7 @@ Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company e
 
       <!-- < second section table open > -->
 
-      <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <section class="why-us section-bg">
          <div class="container">
             <div class="row">
                <div class="container">
@@ -131,24 +135,27 @@ Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company e
                         <tr>
                            <td>
                               {{ $subcategory->category_name }} <br>
-                              <div class="table-link">at {{ $subcategory->time }}<a href=""> Record chat</a>
+                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href="">
+                                    Record chat</a>
                               </div>
                            </td>
-                           
-                          <td><?php
-                           if($tomorrowRecords[$index]->number==""){
-                            echo "XX";
-                        }else{
-                          echo  $tomorrowRecords[$index]->number;
-                        }
-                           ?></td>
-                            <td><?php
-                           if($todayRecords[$index]->number==""){
-                            echo "XX";
-                        }else{
-                          echo  $todayRecords[$index]->number;
-                        }
-                           ?></td>
+
+                           <td><?php
+                                 if (isset($tomorrowRecords[$index]->number) && !empty($tomorrowRecords[$index]->number)) {
+
+                                    echo  $tomorrowRecords[$index]->number;
+                                 } else {
+                                    echo "XX";
+                                 }
+                                 ?></td>
+                           <td><?php
+                                 if (isset($todayRecords[$index]->number) && !empty($todayRecords[$index]->number)) {
+
+                                    echo  $todayRecords[$index]->number;
+                                 } else {
+                                    echo "XX";
+                                 }
+                                 ?></td>
 
                         </tr>
                         @endforeach
@@ -162,8 +169,8 @@ Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company e
       </section>
 
       <!-- <second section closed table > -->
-      <section class="why-us section-bg" data-aos="fade-up" data-aos-delay="200">
-         <div class="container mt-3" >
+      <section class="why-us section-bg">
+         <div class="container mt-3">
             @php
             $currentMonth = \Carbon\Carbon::now()->format('m');
             $currentYear = \Carbon\Carbon::now()->format('Y');
@@ -179,112 +186,122 @@ Like Satta King UP, Upgameking, Satta Bajar, Sattaking and Black Satta Company e
             $latestNames = array_slice(array_unique(array_column($sub->toArray(), 'category_name')), -4);
             @endphp
             <div class="table-h1" style="text-align: center;background-color:#33CC99;">Monthly Satta King Chart of
-               {{ \Carbon\Carbon::now()->format('F Y') }} for
+               {{ \Carbon\Carbon::now()->format('F Y') }} for All Satta Companies
                @foreach ($latestNames as $index => $name)
-               {{ strtoupper($name) }}
-               @if ($index < count($latestNames) - 1) , @endif @endforeach </div>
-                  <div class="table-responsive">
-                     <table class="table table-bordered text-center">
-                        <thead style="font-size: 18px;background-color:#FBC503;">
-                           <tr>
-                              <th width="260px">DATE</th>
-                              @foreach ($latestNames as $name)
-                              <th width="260px">{{ strtoupper($name) }}</th>
-                              @endforeach
-                           </tr>
-                        </thead>
-                        <tbody>
-                           @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear,
-                              $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
-                              @endphp
-                              <tr>
-                                 <?php
-                                  
-                                 $d = strtotime("tomorrow");
 
-                                 $date = date("d", $d);
-                                 if ($day == $date && empty($_GET['month']) && empty($_GET['year'])) {
-                                    break;
-                                 }
-                                 ?>
-                                 <td>{{ $day }}</td>
-                                 <?php
-                                
-                                //  
-                                 $catId = DB::table('category')->get();
-                                 $catId = json_decode(json_encode($catId), 'true');
-                                 $catId = array_column($catId, 'id', '0');
-                                 $catId = implode(",", $catId);
-                                 $number = $numbers[$formattedDate][$name] ?? '--';
-
-                                 if (isset($_GET['month']) && isset($_GET['year'])) {
-                                    $date = $_GET['year'] . '-0' . $_GET['month'] . '-' . $day;
-                                 } 
-                                 else if(!empty($_GET['date']) || isset($_GET['date'])){
-                                      $previous_month=$_GET['date'];
-                                     $_GET['month']=$previous_month;
-                                     $date = date('Y-'.$previous_month.'-'.$day);
-                                
-                                 }
-                                 else {
-                                    $date = date('Y-m-' . $day);
-                                 }
-
-                                 $sql = "SELECT * FROM `subcategory` where cat_id in (" . $catId . ") and date ='" . $date . "' limit 4";
-                                 $data = DB::select($sql);
-                                 // $date = array_column($data, 'date', '0');
-                                 // echo $date['0'];
-                                 $data = json_decode(json_encode($data), true);
-
-                                 foreach ($data as $row) {
-                                //      echo "<pre>";
-                                // print_r($row['number']);
-                                // echo "</pre>";
-                                if($row['number']==""){
-                                   
-                                    ?>
-                                    <td>XX</td>
-                                    <?php
-                                }else{
-                                 ?>
-                                 <td>{{ $row['number'] }}</td>
-                                 <?php
-                                 }
-}
-
-                                 ?>
-
-                              </tr>
-                              @endfor
-                              <tr class="space">
-                                 <td colspan="5"></td>
-                              </tr>
-                              <tr class="option">
-                                 <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record"
-                                    colspan="2">
-                                    <a
-                                       href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
-                                       <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
-                                    </a>
-                                 </td>
-                                 <td class="s-link" colspan="1"></td>
-                                 <td class="e-link bg-info" title="May-2023 Satta Result Chart With Record" colspan="2">
-                                    <a href="/page/{{$categoryId}}">
-                                       <h1 class="aero">{{ \Carbon\Carbon::now()->addMonth()->format('M Y') }}</h1>
-                                    </a>
-                                 </td>
-                              </tr>
-                        </tbody>
-                     </table>
-                  </div>
+               @endforeach
             </div>
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered text-center nowrap dataTable">
+                  <thead style="font-size: 18px;background-color:#FBC503;">
+                     <tr>
+                        <th width="260px">DATE</th>
+                        <?php
+                        $catId = DB::table('category')->get();
+
+                        $catId = json_decode(json_encode($catId), 'true');
+
+                        ?>
+                        @foreach ($catId as $row)
+                        <?php
+                        //   print_r($row);
+                        ?>
+
+                        <th width="200px">{{ strtoupper($row['name']) }}</th>
+
+
+
+                        <?php
+                        continue;
+                        ?>
+                        @endforeach
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear,
+                        $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
+                        @endphp
+                        <tr>
+                           <?php
+
+                           $d = strtotime("tomorrow");
+
+                           $date = date("d", $d);
+                           if ($day == $date && empty($_GET['month']) && empty($_GET['year'])) {
+                              break;
+                           }
+                           ?>
+                           <td>{{ $day }}</td>
+                           <?php
+
+                           $catId = DB::table('category')->get();
+                           $catId = json_decode(json_encode($catId), 'true');
+                           $catId = array_column($catId, 'id', '0');
+                           $catId = implode(",", $catId);
+                           $number = $numbers[$formattedDate][$name] ?? '--';
+
+                           if (isset($_GET['month']) && isset($_GET['year'])) {
+                              $date = $_GET['year'] . '-0' . $_GET['month'] . '-' . $day;
+                           } else if (!empty($_GET['date']) || isset($_GET['date'])) {
+                              $previous_month = $_GET['date'];
+                              $_GET['month'] = $previous_month;
+                              $date = date('Y-' . $previous_month . '-' . $day);
+                           } else {
+                              $date = date('Y-m-' . $day);
+                           }
+
+                           $sql = "SELECT * FROM `subcategory` where cat_id in (" . $catId . ") and date ='" . $date . "'";
+                           $data = DB::select($sql);
+                           // $date = array_column($data, 'date', '0');
+                           // echo $date['0'];
+                           $data = json_decode(json_encode($data), true);
+
+                           foreach ($data as $row) {
+                              //      echo "<pre>";
+                              // print_r($row['number']);
+                              // echo "</pre>";
+                              // if($row['cat_id']==$categoryId){
+                              if ($row['number'] == "") {
+
+                           ?>
+                           <td>XX</td>
+                           <?php
+                              } else {
+                              ?>
+                           <td>{{ $row['number'] }}</td>
+                           <?php
+                                 //  }
+                              }
+                           }
+
+                           ?>
+
+                        </tr>
+                        @endfor
+
+                        <tr class="option">
+                           <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record" colspan="5">
+                              <a
+                                 href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
+                                 <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
+                              </a>
+                           </td>
+                           <td class="s-link" colspan="1"></td>
+                           <td class="e-link bg-info" title="May-2023 Satta Result Chart With Record" colspan="5">
+                              <a href="/page/{{$categoryId}}">
+                                 <h1 class="aero">{{ \Carbon\Carbon::now()->addMonth()->format('M Y') }}</h1>
+                              </a>
+                           </td>
+                        </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </section>
-      <section class="why-us section-bg" data-aos="fade-up" data-aos-delay="200">
+      <section class="why-us section-bg">
          <div class="container mt-3" style="background-color:#FBC503;">
             <p style="text-align: center; font-size: 18px; margin-top: 10px;">
-               Yahan Aap Month Aur Year Select Karke  @foreach ($latestNames as $name)
-                              {{ strtoupper($name) }}
-                              @endforeach Ka Combined Chart Dekh
+               Yahan Aap Month Aur Year Select Karke All Satta Companies Ka Combined Chart Dekh
                Sakte Hai.. </p>
             <form action="" method="get">
                <div class="row d-flex justify-content-between">
