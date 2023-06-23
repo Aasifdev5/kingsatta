@@ -208,8 +208,16 @@
 
                @endforeach
             </div>
+            <style>
+            .table-hover tbody tr:hover td,
+            .table-hover tbody tr:hover th {
+               color: red;
+            }
+            </style>
             <div class="table-responsive">
-               <table class="table table-striped table-bordered text-center nowrap dataTable">
+               <table class="table table-striped table-bordered text-center table-hover nowrap dataTable" style="
+                      
+                     ">
                   <thead style="font-size: 18px;background-color:#FBC503;">
                      <tr>
                         <th width="260px">DATE</th>

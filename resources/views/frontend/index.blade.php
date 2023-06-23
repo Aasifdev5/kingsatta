@@ -2161,8 +2161,14 @@
 
                @endforeach
             </div>
+            <style>
+               .table-hover tbody tr:hover td,
+               .table-hover tbody tr:hover th {
+                  color: red;
+               }
+            </style>
             <div class="table-responsive">
-               <table class="table table-bordered table-striped text-center">
+               <table class="table table-bordered table-striped table-hover text-center">
                   <thead style="font-size: 18px;background-color:#FBC503;">
                      <thead style="font-size: 18px;background-color:#FBC503;">
                         <tr>
@@ -2478,7 +2484,5 @@
    </script>
 
 </body>
-
-</html>
 
 </html>
