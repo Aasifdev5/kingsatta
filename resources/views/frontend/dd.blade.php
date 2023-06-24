@@ -13,9 +13,7 @@
    <link href="assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
 
    <!-- Google Fonts -->
-   <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
-      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
    <!-- Vendor CSS Files -->
    <link href="assets1/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,9 +40,7 @@
    <section id="hero" class="d-flex justify-cntent-center align-items-center">
 
       <!-- Slide 1 -->
-      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input
-            style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;"
-            id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
+      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;" id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
 
       <div class="header">
          <img src="A King logo.png" height="150px">
@@ -71,10 +67,8 @@
          </h3><br>
 
          @foreach($datas as $u)
-         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal"
-               data-target="#myModal">Read More</a></p>
-         <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1"
-            class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
+         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal" data-target="#myModal">Read More</a></p>
+         <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1" class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
 
       </div>
       @endforeach
@@ -152,8 +146,7 @@
                         <tr>
                            <td>
                               {{ $subcategory->category_name }} <br>
-                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href="">
-                                    Record chat</a>
+                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href=""> Record chat</a>
                               </div>
                            </td>
 
@@ -209,10 +202,28 @@
                @endforeach
             </div>
             <style>
-            .table-hover tbody tr:hover td,
-            .table-hover tbody tr:hover th {
-               color: red;
-            }
+               .table-hover tbody tr:hover td,
+               .table-hover tbody tr:hover th {
+                  color: red;
+               }
+
+               .headcol {
+                  position: absolute;
+                  width: 5em;
+                  left: 0;
+                  top: auto;
+                  border-top-width: 1px;
+                  /*only relevant for first row*/
+                  margin-top: -1px;
+                  /*compensate for top border*/
+               }
+
+               th {
+                  margin: 0;
+                  border: 1px solid grey;
+                  white-space: nowrap;
+                  border-top-width: 0px;
+               }
             </style>
             <div class="table-responsive">
                <table class="table table-striped table-bordered text-center table-hover nowrap dataTable" style="
@@ -220,7 +231,7 @@
                      ">
                   <thead style="font-size: 18px;background-color:#FBC503;">
                      <tr>
-                        <th width="260px">DATE</th>
+                        <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
                         <?php
                         $catId = DB::table('category')->get();
 
@@ -243,8 +254,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear,
-                        $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
+                     @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear, $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
                         @endphp
                         <tr>
                            <?php
@@ -256,7 +266,7 @@
                               break;
                            }
                            ?>
-                           <td>{{ $day }}</td>
+                           <td class="headcol">{{ $day }}</td>
                            <?php
 
                            $catId = DB::table('category')->get();
@@ -289,11 +299,11 @@
                               if ($row['number'] == "") {
 
                            ?>
-                           <td>XX</td>
-                           <?php
+                                 <td>XX</td>
+                              <?php
                               } else {
                               ?>
-                           <td>{{ $row['number'] }}</td>
+                                 <td>{{ $row['number'] }}</td>
                            <?php
                                  //  }
                               }
@@ -306,8 +316,7 @@
 
                         <tr class="option">
                            <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record" colspan="5">
-                              <a
-                                 href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
+                              <a href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
                                  <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
                               </a>
                            </td>
@@ -331,8 +340,7 @@
             <form action="" method="get">
                <div class="row d-flex justify-content-between">
                   <div class="col-lg-4">
-                     <select id="monthSelect" name="month" class="form-select form-select-lg"
-                        style="height: 50px; font-size: 20px;">
+                     <select id="monthSelect" name="month" class="form-select form-select-lg" style="height: 50px; font-size: 20px;">
                         <option value="">Please Choose Month</option>
                         <option value="1" <?php
                                           if (isset($_GET['month']) && $_GET['month'] == "1") {
@@ -397,8 +405,7 @@
                      </select>
                   </div>
                   <div class="col-lg-4 mb-5">
-                     <select id="yearSelect" name="year" class="form-select form-select-lg"
-                        style="height: 50px; font-size: 20px;">
+                     <select id="yearSelect" name="year" class="form-select form-select-lg" style="height: 50px; font-size: 20px;">
                         <option value="">Please Choose Year</option>
                         <option value="2015" <?php
                                              if (isset($_GET['year']) && $_GET['year'] == "2015") {
@@ -448,8 +455,7 @@
                      </select>
                   </div>
                   <div class="col-lg-4">
-                     <button id="goButton" type="submit" class="btn btn-danger btn-lg btn-block"
-                        style="height: 50px; font-size: 20px;">GO</button>
+                     <button id="goButton" type="submit" class="btn btn-danger btn-lg btn-block" style="height: 50px; font-size: 20px;">GO</button>
                   </div>
                </div>
             </form>

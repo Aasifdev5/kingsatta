@@ -2166,34 +2166,52 @@
                .table-hover tbody tr:hover th {
                   color: red;
                }
+
+               .headcol {
+                  position: absolute;
+                  width: 5em;
+                  left: 0;
+                  top: auto;
+                  border-top-width: 1px;
+                  /*only relevant for first row*/
+                  margin-top: -1px;
+                  /*compensate for top border*/
+               }
+
+               th {
+                  margin: 0;
+                  border: 1px solid grey;
+                  white-space: nowrap;
+                  border-top-width: 0px;
+               }
             </style>
             <div class="table-responsive">
                <table class="table table-bordered table-striped table-hover text-center">
+
                   <thead style="font-size: 18px;background-color:#FBC503;">
-                     <thead style="font-size: 18px;background-color:#FBC503;">
-                        <tr>
-                           <th width="260px">DATE</th>
-                           <?php
-                           $catId = DB::table('category')->get();
+                     <tr>
+                        <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
+                        <?php
+                        $catId = DB::table('category')->get();
 
-                           $catId = json_decode(json_encode($catId), 'true');
+                        $catId = json_decode(json_encode($catId), 'true');
 
-                           ?>
-                           @foreach ($catId as $row)
-                           <?php
-                           //   print_r($row);
-                           ?>
+                        ?>
+                        @foreach ($catId as $row)
+                        <?php
+                        //   print_r($row);
+                        ?>
 
-                           <th width="200px">{{ strtoupper($row['name']) }}</th>
-
+                        <th>{{ strtoupper($row['name']) }}</th>
 
 
-                           <?php
-                           continue;
-                           ?>
-                           @endforeach
-                        </tr>
-                     </thead>
+
+                        <?php
+                        continue;
+                        ?>
+                        @endforeach
+                     </tr>
+                  </thead>
                   <tbody>
                      @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear, $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
                         @endphp
@@ -2206,7 +2224,7 @@
                               break;
                            }
                            ?>
-                           <td>{{ $day }}</td>
+                           <td class="headcol">{{ $day }}</td>
 
                            <?php
 
@@ -2255,23 +2273,24 @@
 
                         </tr>
                         @endfor
-                        <tr class="option">
-                           <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record" colspan="5">
-                              <a href="<?php echo '?date=' . date('m', strtotime('last month')); ?>">
-                                 <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
-                              </a>
-                           </td>
-                           <td class="s-link" colspan="1"></td>
-                           <td class="e-link bg-info" title="May-2023 Satta Result Chart With Record" colspan="5">
-                              <a href="#">
-                                 <h1 class="aero">{{ \Carbon\Carbon::now()->addMonth()->format('M Y') }}</h1>
-                              </a>
-                           </td>
-                        </tr>
+
 
 
                   </tbody>
-
+                  <!--<tr class="option">-->
+                  <!--        <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record"-->
+                  <!--           colspan="5">-->
+                  <!--          <a href="<?php echo '?date=' . date('m', strtotime('last month')); ?>">-->
+                  <!--              <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>-->
+                  <!--           </a>-->
+                  <!--        </td>-->
+                  <!--        <td class="s-link" colspan="1"></td>-->
+                  <!--        <td class="e-link bg-info" title="May-2023 Satta Result Chart With Record" colspan="5">-->
+                  <!--           <a href="#">-->
+                  <!--              <h1 class="aero">{{ \Carbon\Carbon::now()->addMonth()->format('M Y') }}</h1>-->
+                  <!--           </a>-->
+                  <!--        </td>-->
+                  <!--     </tr>-->
                </table>
 
 
