@@ -27,7 +27,16 @@
                   <span class="pcoded-mtext">Dashboard</span>
                </a>
             </li>
-            <!-- <li class="nav-item pcoded-hasmenu">
+            <?php
+            $session = session()->all();
+            // echo "<pre>";
+            // print_r($session['login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d']);
+            // echo "</pre>";
+            if ($session['login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'] == 1) {
+
+
+            ?>
+            <li class="nav-item pcoded-hasmenu">
                <a href="#" class="nav-link">
                   <span class="pcoded-micon"><i class="feather icon-layout"></i></span>
                   <span class="pcoded-mtext">User Management</span>
@@ -36,7 +45,7 @@
                   <li><a href="/list">User List</a></li>
 
                </ul>
-            </li> -->
+            </li>
             <li class="nav-item pcoded-hasmenu">
                <a href="#" class="nav-link">
                   <span class="pcoded-micon"><i class="feather icon-box"></i></span>
@@ -64,7 +73,22 @@
 
                </ul>
             </li>
+            <?php
+            } else {
+            ?>
+            <li class="nav-item pcoded-hasmenu">
+               <a href="#" class="nav-link">
+                  <span class="pcoded-micon"><i class="feather icon-box"></i></span>
+                  <span class="pcoded-mtext">Subcategory Management</span>
+               </a>
+               <ul class="pcoded-submenu">
 
+                  <li><a href="{{('/listsubcategory')}}">Subcategory </a></li>
+               </ul>
+            </li>
+            <?php
+            }
+            ?>
 
          </ul>
       </div>

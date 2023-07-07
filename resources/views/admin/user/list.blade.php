@@ -29,36 +29,43 @@
                </div>
                <div class="card-body table-border-style">
                   <div class="table-responsive">
-                     <table class="table table-striped" id="data-table">
+                     <table id="datatable" class="table table-striped" data-toggle="data-table">
+                        @if(Session::has('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @endif
+                        @if(Session::has('fail'))
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
                         <thead>
-                           <tr>
+                           <tr class="ligth">
                               <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
-                              <th>Action</th>
+                              <th> Name</th>
+                              <th> Username</th>
+                              <th>Password</th>
+
                            </tr>
                         </thead>
+                        <?php
+                        // $session = session()->all();
+                        // echo "<pre>";
+                        // print_r($session);
+                        // echo "</pre>";
+                        ?>
                         <tbody>
+                           <?php $count = 1; ?>
+                           @foreach($data1 as $row)
+                           <?php
+
+
+                           ?>
                            <tr>
-                              <td>1</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                              <td>
-                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle">
-                                       <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm rounded-circle">
-                                       <i class="fas fa-trash"></i>
-                                    </button>
-                                 </div>
-
-                              </td>
+                              <td><?php echo $count++; ?></td>
+                              <td>{{$row->name}}</td>
+                              <td>{{$row->email}}</td>
+                              <td>{{$row->password}}</td>
                            </tr>
-
-
+                           <?php ?>
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

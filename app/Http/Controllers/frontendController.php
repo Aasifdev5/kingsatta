@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 use App\Models\subcategory;
 use App\Models\category;
@@ -28,7 +29,7 @@ class frontendController extends Controller
                     ->from('subcategory')
                     ->groupBy('cat_id');
             })
-            ->orderBy('subcategory.time','Asc')
+            ->orderBy('subcategory.time', 'Asc')
             ->take(5) // Limit the result to 5 records
             ->get();
 
@@ -67,26 +68,30 @@ class frontendController extends Controller
 
     public function list()
     {
-        return view('admin.user.list');
+        $data1 = User::all();
+        return view('admin.user.list', compact('data1'));
     }
     public function add_distributor()
     {
-        return view('admin.add_distributor');
+        $data1 = category::all();
+        return view('admin.add_distributor', compact('data1'));
     }
     public function save_distributor(Request $request)
     {
 
-        $customer = new User();
+        $user = new User();
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:customers',
+            'category_id' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->password = FacadesHash::make($request->password);
-        $response = $customer->save();
+        $user->name = $request->name;
+        $user->category_id = $request->category_id;
+        $user->email = $request->email;
+        $user->password = FacadesHash::make($request->password);
+        $response = $user->save();
         if ($response) {
             return back()->with('success', 'Successfully register');
         } else {
