@@ -30,7 +30,7 @@ class frontendController extends Controller
                     ->from('subcategory')
                     ->groupBy('cat_id');
             })
-            ->orderBy('subcategory.time','Asc')
+            ->orderBy('subcategory.time', 'Asc')
             ->take(5) // Limit the result to 5 records
             ->get();
 
@@ -67,7 +67,7 @@ class frontendController extends Controller
         return view('frontend.index', compact('datas', 'popups', 'slider', 'subcategories', 'todayRecords', 'tomorrowRecords', 'sub'));
     }
 
-   
+
     public function list()
     {
         $data1 = User::all();
@@ -90,7 +90,7 @@ class frontendController extends Controller
         ]);
 
         $user->name = $request->name;
-        $user->category_id = $request->category_id;
+        $user->category_id = implode(",", $request->category_id);
         $user->email = $request->email;
         $user->password = FacadesHash::make($request->password);
         $response = $user->save();
@@ -100,7 +100,7 @@ class frontendController extends Controller
             return back()->with('fail', 'Something wrong');
         }
     }
-    public function page(Request $request,$key)
+    public function page(Request $request, $key)
     {
         // return $request->get('cat_id');
         // $currenturl = URL::current()->getName();
@@ -119,8 +119,8 @@ class frontendController extends Controller
                     ->groupBy('cat_id');
             })
             ->get();
-            
-           
+
+
         $todayDate = \Carbon\Carbon::today()->format('Y-m-d');
         $tomorrowDate = \Carbon\Carbon::tomorrow()->format('Y-m-d');
 
@@ -151,7 +151,7 @@ class frontendController extends Controller
             ->orderByRaw("IF(subcategory.cat_id = ?, 0, 1)", [$catId])
             ->get();
 
-            
+
         // Mapping cat_id to name
         $catIdToName = [];
         foreach ($sub as $subcategory) {
@@ -161,6 +161,6 @@ class frontendController extends Controller
         // Get the category name based on $catId
         $categoryName = isset($catIdToName[$catId]) ? $catIdToName[$catId] : '';
 
-        return view('frontend.dd', compact('datas', 'popups', 'subcategories', 'todayRecords', 'tomorrowRecords', 'sub', 'catId', 'categoryId', 'catIdToName', 'categoryName','key'));
+        return view('frontend.dd', compact('datas', 'popups', 'subcategories', 'todayRecords', 'tomorrowRecords', 'sub', 'catId', 'categoryId', 'catIdToName', 'categoryName', 'key'));
     }
 }

@@ -38,8 +38,7 @@
                               <label class="control-label col-sm-3 align-self-center mb-0" for="email1"> Name
                                  :</label>
                               <div class="col-sm-9">
-                                 <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}"
-                                    placeholder="Enter Name">
+                                 <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" placeholder="Enter Name">
                                  <span class="text-danger">@error ('name') {{$message}}
                                     @enderror</span>
                               </div>
@@ -48,8 +47,7 @@
                               <label class="control-label col-sm-3 align-self-center mb-0" for="email1">
                                  Email:</label>
                               <div class="col-sm-9">
-                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="{{old('email')}}" placeholder="Enter  Email">
+                                 <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}" placeholder="Enter  Email">
                                  <span class="text-danger">@error ('email') {{$message}} @enderror</span>
                               </div>
                            </div>
@@ -59,8 +57,7 @@
                                  Password:</label>
                               <div class="col-sm-9">
 
-                                 <input type="password" class="form-control" id="pass" value="{{old('password')}}"
-                                    name="password" placeholder="Password">
+                                 <input type="password" class="form-control" id="pass" value="{{old('password')}}" name="password" placeholder="Password">
                                  <span class="text-danger">@error ('password') {{$message}} @enderror</span>
                               </div>
                            </div>
@@ -68,7 +65,7 @@
                               <label class="control-label col-sm-3 align-self-center mb-0" for="pass">
                                  Category:</label>
                               <div class="col-sm-9">
-                                 <select name="category_id" id="inputState" class="form-control">
+                                 <select name="category_id[]" id="inputState" multiple class="form-control">
                                     <option value="">please select</option>
                                     @foreach($data1 as $add)
                                     <option value="{{ $add->id }}" class="text-capitalize">
