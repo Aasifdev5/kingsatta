@@ -38,7 +38,50 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
    <!-- ------------newslider css link---------- -->
    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+  <!---->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+    .poppins{
+        font-family: 'Poppins';
 
+    }
+   #hero {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    padding:0;
+}
+
+.img_logo{
+    margin-top:-100px;
+}
+@media(max-width:414px){
+   
+}
+@media only screen and (max-width: 1024px) and (min-width: 240px)
+{
+     .headcol
+    {
+        width:4rem!important;
+        font-size:12px!important;
+    }
+    .date{
+        width:38px;
+        height:47px;
+        padding-left:5px!important;
+        padding-top:12px!important;
+    }
+    .day{
+         height:47px;
+    }
+}
+@media only screen and (max-width: 414px) 
+{
+    .tb_row{
+       padding-left:32px!important;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -51,9 +94,9 @@
 
 
 
-      <div class="header">
-         <img src="A King logo.png" height="150px">
-         <h2 class="animated fadeInDown">Welcome to <span>A King Satta</span></h2>
+      <div class="header mt-0">
+         <img src="https://akingsatta.com/satta.png" class="img_logo" height="150px">
+         <h2 class="animated fadeInDown poppins">Welcome to <span>A King Satta Result</span></h2>
          <h3 style="color:black;">Today Super Fast Live Satta Results And Chart of June 2023 for
             <?php
             $company = DB::table('category')->get();
@@ -1806,7 +1849,7 @@
       }
    </style>
    <div class="swal2-container swal2-bottom swal2-shown" id="popup-form-browser" style="overflow-y: auto;">
-      <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+      <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;margin:auto!important;">
          <div class="swal2-header">
             <ul class="swal2-progress-steps" style="display: none;"></ul>
             <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
@@ -1868,7 +1911,7 @@
 
                   <table class="table table-hover">
                      <div class="table-head">
-                        <tr>
+                        <tr style="background:#424242;color:#fff;">
                            <th style="font-size: 20px;">Games List</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->subDay()->format('D dS') }}</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->format('D dS') }}</th>
@@ -1888,7 +1931,7 @@
                         <tr>
                            <td>{{ $subcategory->category_name }} <br>
                               <div class="table-link">at {{ date("h:i A", strtotime($subcategory->time)) }} <a href="/page/{{$subcategory->cat_id}}"> Record
-                                    chat</a></div>
+                                    chart</a></div>
                            </td>
                            <td><?php
                                  if (isset($tomorrowRecords[$index]->number) && !empty($tomorrowRecords[$index]->number)) {
@@ -1941,7 +1984,7 @@
                   </div>
                   <table class="table table-hover" id="table-first">
                      <div class="table-head">
-                        <tr>
+                        <tr  style="background:#424242;color:#fff;">
                            <th style="font-size: 20px;">Games List</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->subDay()->format('D dS') }}</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->format('D dS') }}</th>
@@ -1976,7 +2019,7 @@
                         ?>
                            <tr>
                               <td>{{ $row['name'] }} <br>
-                                 <div class="table-link">at {{ date("h:i A", strtotime($row['time'])) }}<a href="/page/{{$row['id']}}"> Record chat</a>
+                                 <div class="table-link">at {{ date("h:i A", strtotime($row['time'])) }}<a href="/page/{{$row['id']}}"> Record chart</a>
                                  </div>
                               </td>
                               <td><?php
@@ -2174,7 +2217,7 @@
                   top: auto;
                   border-top-width: 1px;
                   /*only relevant for first row*/
-                  margin-top: -1px;
+                  /*margin-top: -1px;*/
                   /*compensate for top border*/
                }
 
@@ -2190,7 +2233,7 @@
 
                   <thead style="font-size: 18px;background-color:#FBC503;">
                      <tr>
-                        <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
+                        <th style="font-size: 18px;background-color:red;color:#fff;" class="headcol date">DATE</th>
                         <?php
                         $catId = DB::table('category')->get();
 
@@ -2202,7 +2245,7 @@
                         //   print_r($row);
                         ?>
 
-                        <th>{{ strtoupper($row['name']) }}</th>
+                        <th class="tb_row">{{ strtoupper($row['name']) }}</th>
 
 
 
@@ -2224,7 +2267,7 @@
                               break;
                            }
                            ?>
-                           <td class="headcol">{{ $day }}</td>
+                           <td class="headcol day" style="background:red;color:#fff;">{{ $day }}</td>
 
                            <?php
 
@@ -2244,31 +2287,42 @@
                               $date = date('Y-m-' . $day);
                            }
 
-                           $sql = "SELECT * FROM `subcategory` where cat_id in (" . $catId . ") and date ='" . $date . "'";
-                           $data = DB::select($sql);
-
-
-                           // $date = array_column($data, 'date', '0');
-                           // echo $date['0'];
-                           $data = json_decode(json_encode($data), true);
-
-                           foreach ($data as $row) {
-                              //      echo "<pre>";
-                              // print_r($row);
-                              // echo "</pre>";
-                              if (isset($row['number']) && !empty($row['number'])) {
-
+                          
+                           $sql1 ="WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='".$date."') SELECT id,name,sum(num) as number FROM acs GROUP BY id";
+                           $data1 = DB::select($sql1);
+                           
+                           $data1 = json_decode(json_encode($data1), true);
+                           
+                            if(count($data1)>0 && !empty($data1)){
+                            
+                           foreach ($data1 as $row) {
+                           
                            ?>
-                                 <td>{{ $row['number'] }}</td>
-
-                              <?php
-                              } else {
-                              ?>
-                                 <td>XX</td>
+                           <td><?php
+                           if($row['number']==0){
+                              echo "XX";
+                           }else{
+                              echo $row['number'];
+                           }
+                           
+                           ?></td>
+                                
                            <?php
 
+                            }
+                           
+                            }else{
+                                  $catId = DB::table('category')->orderBy('id', 'asc')->get();
+                           $catId = json_decode(json_encode($catId), 'true');
+                           $catId = array_column($catId, 'id', '0');
+                                for($index=1;$index<=count($catId);$index++){
+                                  
+                                
+                                  ?>
+                                  <td>XX</td>
+                                  <?php
+                                }
                               }
-                           }
                            ?>
 
                         </tr>

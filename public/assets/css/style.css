@@ -10767,6 +10767,11 @@ a.text-dark:hover, a.text-dark:focus {
     thead {
         display: table-header-group;
     }
+    .table_row
+    {
+        background:#424242!important;
+        color:#fff;
+    }
 
     tr,
   img {

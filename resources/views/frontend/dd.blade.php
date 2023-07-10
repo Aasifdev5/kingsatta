@@ -43,8 +43,8 @@
       <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;" id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
 
       <div class="header">
-         <img src="A King logo.png" height="150px">
-         <h2 class="animated fadeInDown">Welcome to <span>A King Satta</span></h2>
+         <img src="https://akingsatta.com/satta.png" height="150px">
+         <h2 class="animated fadeInDown">Welcome to <span>A King Satta Result</span></h2>
          <h3 style="color:black;">Today Super Fast Live Satta Results And Chart of June 2023 for
             <?php
             $company = DB::table('category')->get();
@@ -146,7 +146,7 @@
                         <tr>
                            <td>
                               {{ $subcategory->category_name }} <br>
-                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href=""> Record chat</a>
+                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href=""> Record chart</a>
                               </div>
                            </td>
 
@@ -233,10 +233,21 @@
                      <tr>
                         <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
                         <?php
-                        $catId = DB::table('category')->get();
+                        $catId = DB::table('category')->select('id','name')->get()->toArray();
 
+                        // dd($catId);
+                        $value= $key;
+                        $arr = [];
+                        foreach($catId as $k =>$val){
+                           if($val->id == $key){
+                              array_push($arr,$val);
+                              unset($catId[$k]);
+                              
+                           }
+                        }
+                        $catId = array_merge($arr,$catId);
                         $catId = json_decode(json_encode($catId), 'true');
-
+                        // print_r($catId);die;
                         ?>
                         @foreach ($catId as $row)
                         <?php
@@ -244,9 +255,6 @@
                         ?>
 
                         <th width="200px">{{ strtoupper($row['name']) }}</th>
-
-
-
                         <?php
                         continue;
                         ?>
@@ -285,27 +293,41 @@
                               $date = date('Y-m-' . $day);
                            }
 
-                           $sql = "SELECT * FROM `subcategory` where cat_id in (" . $catId . ") and date ='" . $date . "'";
-                           $data = DB::select($sql);
+                           $sql1 ="WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='".$date."') SELECT id,name,sum(num) as number FROM acs GROUP BY id";
+                           $data = DB::select($sql1);
                            // $date = array_column($data, 'date', '0');
                            // echo $date['0'];
-                           $data = json_decode(json_encode($data), true);
+                           $value= $key;
+                        $arr = [];
+                        foreach($data as $k =>$val){
+                           if($val->id == $key){
+                              array_push($arr,$val);
+                              unset($data[$k]);
+                              
+                           }
+                        }
+                        $data = array_merge($arr,$data);
+                        $data = json_decode(json_encode($data), true);
 
-                           foreach ($data as $row) {
-                              //      echo "<pre>";
-                              // print_r($row['number']);
-                              // echo "</pre>";
-                              // if($row['cat_id']==$categoryId){
-                              if ($row['number'] == "") {
-
+                           foreach ($data as $row) {                              
+                              if ($row['number'] == ""){
                            ?>
-                                 <td>XX</td>
+                              <td>XX</td>
                               <?php
                               } else {
                               ?>
-                                 <td>{{ $row['number'] }}</td>
+                              <td>
+                                 <?php
+                                 
+                                 if($row['number']==0){
+                                    echo "XX";
+                                 }else{
+                                    echo $row['number'];
+                                 }
+                                 ?>
+                              </td>
                            <?php
-                                 //  }
+                              
                               }
                            }
 
