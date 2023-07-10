@@ -13,7 +13,9 @@
    <link href="assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
 
    <!-- Google Fonts -->
-   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+      rel="stylesheet">
 
    <!-- Vendor CSS Files -->
    <link href="assets1/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +42,9 @@
    <section id="hero" class="d-flex justify-cntent-center align-items-center">
 
       <!-- Slide 1 -->
-      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;" id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
+      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input
+            style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;"
+            id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
 
       <div class="header">
          <img src="https://akingsatta.com/satta.png" height="150px">
@@ -67,8 +71,10 @@
          </h3><br>
 
          @foreach($datas as $u)
-         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal" data-target="#myModal">Read More</a></p>
-         <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1" class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
+         <p class="animated fadeInUp para">{{ $u->description }} <a href="#" style="color: red;" data-toggle="modal"
+               data-target="#myModal">Read More</a></p>
+         <a href="https://docs.google.com/forms/d/e/1FAIpQLSerMVgTlndjNA84-zL7HYOno2mtbN0yjc_Ab-DK2oOloPpWUQ/viewform?pli=1"
+            class="btn-get-started animated fadeInUp">फॉर्म लिंक.</a>
 
       </div>
       @endforeach
@@ -146,7 +152,8 @@
                         <tr>
                            <td>
                               {{ $subcategory->category_name }} <br>
-                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a href=""> Record chart</a>
+                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a
+                                    href="/page/{{$subcategory->cat_id}}"> Record chart</a>
                               </div>
                            </td>
 
@@ -202,28 +209,28 @@
                @endforeach
             </div>
             <style>
-               .table-hover tbody tr:hover td,
-               .table-hover tbody tr:hover th {
-                  color: red;
-               }
+            .table-hover tbody tr:hover td,
+            .table-hover tbody tr:hover th {
+               color: red;
+            }
 
-               .headcol {
-                  position: absolute;
-                  width: 5em;
-                  left: 0;
-                  top: auto;
-                  border-top-width: 1px;
-                  /*only relevant for first row*/
-                  margin-top: -1px;
-                  /*compensate for top border*/
-               }
+            .headcol {
+               position: absolute;
+               width: 5em;
+               left: 0;
+               top: auto;
+               border-top-width: 1px;
+               /*only relevant for first row*/
+               margin-top: -1px;
+               /*compensate for top border*/
+            }
 
-               th {
-                  margin: 0;
-                  border: 1px solid grey;
-                  white-space: nowrap;
-                  border-top-width: 0px;
-               }
+            th {
+               margin: 0;
+               border: 1px solid grey;
+               white-space: nowrap;
+               border-top-width: 0px;
+            }
             </style>
             <div class="table-responsive">
                <table class="table table-striped table-bordered text-center table-hover nowrap dataTable" style="
@@ -233,19 +240,18 @@
                      <tr>
                         <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
                         <?php
-                        $catId = DB::table('category')->select('id','name')->get()->toArray();
+                        $catId = DB::table('category')->select('id', 'name')->get()->toArray();
 
                         // dd($catId);
-                        $value= $key;
+                        $value = $key;
                         $arr = [];
-                        foreach($catId as $k =>$val){
-                           if($val->id == $key){
-                              array_push($arr,$val);
+                        foreach ($catId as $k => $val) {
+                           if ($val->id == $key) {
+                              array_push($arr, $val);
                               unset($catId[$k]);
-                              
                            }
                         }
-                        $catId = array_merge($arr,$catId);
+                        $catId = array_merge($arr, $catId);
                         $catId = json_decode(json_encode($catId), 'true');
                         // print_r($catId);die;
                         ?>
@@ -262,7 +268,8 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear, $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
+                     @for ($day = 1; $day <= $daysInMonth; $day++) @php $date=\Carbon\Carbon::create($currentYear,
+                        $currentMonth, $day); $formattedDate=$date->format('Y-m-d');
                         @endphp
                         <tr>
                            <?php
@@ -293,41 +300,40 @@
                               $date = date('Y-m-' . $day);
                            }
 
-                           $sql1 ="WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='".$date."') SELECT id,name,sum(num) as number FROM acs GROUP BY id";
+                           $sql1 = "WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "') SELECT id,name,sum(num) as number FROM acs GROUP BY id";
                            $data = DB::select($sql1);
                            // $date = array_column($data, 'date', '0');
                            // echo $date['0'];
-                           $value= $key;
-                        $arr = [];
-                        foreach($data as $k =>$val){
-                           if($val->id == $key){
-                              array_push($arr,$val);
-                              unset($data[$k]);
-                              
+                           $value = $key;
+                           $arr = [];
+                           foreach ($data as $k => $val) {
+                              if ($val->id == $key) {
+                                 array_push($arr, $val);
+                                 unset($data[$k]);
+                              }
                            }
-                        }
-                        $data = array_merge($arr,$data);
-                        $data = json_decode(json_encode($data), true);
+                           $data = array_merge($arr, $data);
+                           $data = json_decode(json_encode($data), true);
 
-                           foreach ($data as $row) {                              
-                              if ($row['number'] == ""){
+                           foreach ($data as $row) {
+                              if ($row['number'] == "") {
                            ?>
-                              <td>XX</td>
-                              <?php
+                           <td>XX</td>
+                           <?php
                               } else {
                               ?>
-                              <td>
-                                 <?php
-                                 
-                                 if($row['number']==0){
-                                    echo "XX";
-                                 }else{
-                                    echo $row['number'];
-                                 }
-                                 ?>
-                              </td>
+                           <td>
+                              <?php
+
+                                    if ($row['number'] == 0) {
+                                       echo "XX";
+                                    } else {
+                                       echo $row['number'];
+                                    }
+                                    ?>
+                           </td>
                            <?php
-                              
+
                               }
                            }
 
@@ -338,7 +344,8 @@
 
                         <tr class="option">
                            <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record" colspan="5">
-                              <a href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
+                              <a
+                                 href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
                                  <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
                               </a>
                            </td>
@@ -362,7 +369,8 @@
             <form action="" method="get">
                <div class="row d-flex justify-content-between">
                   <div class="col-lg-4">
-                     <select id="monthSelect" name="month" class="form-select form-select-lg" style="height: 50px; font-size: 20px;">
+                     <select id="monthSelect" name="month" class="form-select form-select-lg"
+                        style="height: 50px; font-size: 20px;">
                         <option value="">Please Choose Month</option>
                         <option value="1" <?php
                                           if (isset($_GET['month']) && $_GET['month'] == "1") {
@@ -427,7 +435,8 @@
                      </select>
                   </div>
                   <div class="col-lg-4 mb-5">
-                     <select id="yearSelect" name="year" class="form-select form-select-lg" style="height: 50px; font-size: 20px;">
+                     <select id="yearSelect" name="year" class="form-select form-select-lg"
+                        style="height: 50px; font-size: 20px;">
                         <option value="">Please Choose Year</option>
                         <option value="2015" <?php
                                              if (isset($_GET['year']) && $_GET['year'] == "2015") {
@@ -477,7 +486,8 @@
                      </select>
                   </div>
                   <div class="col-lg-4">
-                     <button id="goButton" type="submit" class="btn btn-danger btn-lg btn-block" style="height: 50px; font-size: 20px;">GO</button>
+                     <button id="goButton" type="submit" class="btn btn-danger btn-lg btn-block"
+                        style="height: 50px; font-size: 20px;">GO</button>
                   </div>
                </div>
             </form>
