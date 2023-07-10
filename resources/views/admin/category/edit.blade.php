@@ -47,20 +47,17 @@
                                  value="@if (!empty($data)){{ $data->name }}@else{{ old('name') }}@endif" required>
                            </div>
                         </div>
-                      <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Time</label>
-                                    <div class="input-group">
-                                        <input type="time" class="form-control" id="exampleFormControlTextarea1" name="time" value="{{ $data->time }}" required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" title="Please enter a valid time in HH:MM format">
-                                        <select class="form-control" name="ampm" required>
-                                            <option value="am"
-                                           
-                                            >AM</option>
-                                            <option value="pm">PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-sm-4">
+                           <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Time</label>
+                              <div class="input-group">
+                                 <input type="time" class="form-control" id="exampleFormControlTextarea1" name="time"
+                                    value="{{ $data->time }}" required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+                                    title="Please enter a valid time in HH:MM format">
+
+                              </div>
+                           </div>
+                        </div>
                         <br>
                         <button type="submit" class="btn  btn-primary">Submit</button>
 

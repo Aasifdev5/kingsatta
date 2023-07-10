@@ -42,7 +42,7 @@
                               <th> Name</th>
                               <th> Username</th>
                               <th>Password</th>
-
+                              <th>Action</th>
                            </tr>
                         </thead>
                         <?php
@@ -63,6 +63,23 @@
                               <td>{{$row->name}}</td>
                               <td>{{$row->email}}</td>
                               <td>{{$row->password}}</td>
+                              <td>
+                                 <div class="btn-group" role="group">
+                                    <div class="btn-group float-right" role="group">
+                                       <a href="{{ url('edit_distributor', ['id' => $row->id]) }}" class="btn btn-outline-primary btn-sm rounded-circle">
+                                          <i class="fas fa-edit"></i>
+                                       </a>
+                                    </div>
+
+                                    <br>
+                                    <div class="btn-group float-right" role="group">
+                                       <a href="{{ url('deleteDistributor', ['id' => $row->id]) }}" class="btn btn-outline-danger btn-sm rounded-circle">
+                                          <i class="fas fa-trash"></i>
+                                       </a>
+                                    </div>
+                                 </div>
+
+                              </td>
                            </tr>
                            <?php ?>
                            @endforeach

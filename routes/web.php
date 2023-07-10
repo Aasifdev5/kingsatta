@@ -33,6 +33,9 @@ Route::get('/page/{id}', [frontendController::class, 'page']);
 Route::get('/list', [frontendController::class, 'list']);
 Route::get('/add_distributor', [frontendController::class, 'add_distributor']);
 Route::post('/save_distributor', [frontendController::class, 'save_distributor']);
+Route::get('/edit_distributor', [frontendController::class, 'edit_distributor']);
+// Route::post('/deletedistributor/{$id}', [frontendController::class, 'deletedistributor']);
+Route::get('/deleteDistributor/$id', [frontendController::class, 'deleteDistributor']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
