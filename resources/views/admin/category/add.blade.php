@@ -50,9 +50,7 @@
                            <div class="form-group">
                               <label for="exampleFormControlTextarea1">Time</label>
                               <div class="input-group">
-                                 <input type="time" class="form-control" id="exampleFormControlTextarea1" name="time"
-                                    required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-                                    title="Please enter a valid time in HH:MM format">
+                                 <input type="time" class="form-control" name="time" required>
 
                               </div>
                            </div>

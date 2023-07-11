@@ -55,8 +55,7 @@
                            <?php $count = 1; ?>
                            @foreach($data1 as $row)
                            <?php
-
-
+                           if ($row->id != 1) {
                            ?>
                            <tr>
                               <td><?php echo $count++; ?></td>
@@ -66,14 +65,16 @@
                               <td>
                                  <div class="btn-group" role="group">
                                     <div class="btn-group float-right" role="group">
-                                       <a href="{{ url('edit_distributor', ['id' => $row->id]) }}" class="btn btn-outline-primary btn-sm rounded-circle">
+                                       <a href="{{ url('edit_distributor', $row->id) }}"
+                                          class="btn btn-outline-primary btn-sm rounded-circle">
                                           <i class="fas fa-edit"></i>
                                        </a>
                                     </div>
 
                                     <br>
                                     <div class="btn-group float-right" role="group">
-                                       <a href="{{ url('deleteDistributor', ['id' => $row->id]) }}" class="btn btn-outline-danger btn-sm rounded-circle">
+                                       <a href="{{url('delete_user',$row->id)}}"
+                                          class="btn btn-outline-danger btn-sm rounded-circle">
                                           <i class="fas fa-trash"></i>
                                        </a>
                                     </div>
@@ -81,7 +82,7 @@
 
                               </td>
                            </tr>
-                           <?php ?>
+                           <?php } ?>
                            @endforeach
                         </tbody>
                      </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\category;
+use App\Models\subcategory;
 
 
 
@@ -55,10 +56,13 @@ class CategoryController extends Controller
 
   public function updatecategory(Request $request, $id)
   {
+
+
+
+    $sdata = subcategory::where("cat_id", $id)->update(["time" => $request->time]);
+
     $data = category::findOrFail($id);
     $data->name = $request->name;
-    $selectedTime = $request->input('time');
-    $selectedAMPM = $request->input('ampm');
 
     $data->time = $request->input('time');
     $data->update();
