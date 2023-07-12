@@ -78,17 +78,18 @@ class frontendController extends Controller
         $data1 = category::all();
         return view('admin.add_distributor', compact('data1'));
     }
-    public function edit_distributor(Request $request, $id)
+    public function edit_distributor(Request $request, $uid)
     {
-        $vehicle = User::find($id);
-
-        return view('admin.edit_distributor.edit_distributor');
+        $user = User::find($uid);
+        if (!empty($user)) {
+            return view('admin.user.edit_distributor', compact('user'));
+        }
     }
-    public function delete_user(Request $request, $id)
+    public function delete_user(Request $request, $uid)
     {
 
 
-        $code = User::findorfail($id);
+        $code = User::findorfail($uid);
 
         $code->delete();
         return back()->with('success', 'Successfully Deleted Record');

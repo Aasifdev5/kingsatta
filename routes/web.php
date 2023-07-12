@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\contentController;
 use App\Http\Controllers\sliderController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Distributor;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\popupController;
 use App\Http\Controllers\frontendController;
@@ -26,16 +27,18 @@ use App\Http\Controllers\User;
 Route::get('admin_login', function () {
     return view('auth.login');
 });
-
+Route::resource('items', Distributor::class);
 Route::get('/', [frontendController::class, 'index']);
 Route::get('/page/{id}', [frontendController::class, 'page']);
 
+
+Route::get('/items/{item}', [Distributor::class, 'destroy'])->name('destroy');
 Route::get('/list', [frontendController::class, 'list']);
 Route::get('/add_distributor', [frontendController::class, 'add_distributor']);
-Route::post('/save_distributor', [frontendController::class, 'save_distributor']);
-Route::get('/edit_distributor/{$id}', [frontendController::class, 'edit_distributor']);
+Route::get('items/edit/{item}', [Distributor::class, 'edit'])->name('edit');
+Route::post('items/{item}', [Distributor::class, 'update'])->name('update');
 
-Route::get('/delete_user/{$id}', [frontendController::class, 'delete_user']);
+Route::post('/save_distributor', [frontendController::class, 'save_distributor']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -44,6 +47,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
 
 
     Route::get('/addcontent', [contentController::class, 'addcontent']);
@@ -84,6 +88,8 @@ Route::middleware([
     Route::put('/updatepopup/{id}', [popupController::class, 'updatepopup']);
     Route::get('/deletepopup/{id}', [popupController::class, 'deletepopup']);
 });
+
+
 
 
 Route::get('/logout', function () {

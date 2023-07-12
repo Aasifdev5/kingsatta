@@ -141,7 +141,7 @@
 
                   <table class="table table-hover" id="table-first">
                      <thead>
-                        <tr>
+                        <tr style="background:#424242;color:#fff;">
                            <th style="font-size: 20px;">Games List</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->subDay()->format('D dS') }}</th>
                            <th style="font-size: 20px;">{{ \Carbon\Carbon::now()->format('D dS') }}</th>
@@ -152,7 +152,7 @@
                         <tr>
                            <td>
                               {{ $subcategory->category_name }} <br>
-                              <div class="table-link">at {{ date("h:i:s A", strtotime($subcategory->time)) }}<a
+                              <div class="table-link">at {{ date("h:i A", strtotime($subcategory->time)) }}<a
                                     href="/page/{{$subcategory->cat_id}}"> Record chart</a>
                               </div>
                            </td>
@@ -221,7 +221,7 @@
                top: auto;
                border-top-width: 1px;
                /*only relevant for first row*/
-               margin-top: -1px;
+               /*margin-top: -1px;*/
                /*compensate for top border*/
             }
 
@@ -231,14 +231,36 @@
                white-space: nowrap;
                border-top-width: 0px;
             }
+
+            @media only screen and (max-width: 1024px) and (min-width: 240px) {
+               .headcol {
+                  width: 4rem !important;
+                  font-size: 12px !important;
+               }
+
+               .date {
+                  width: 38px;
+                  height: 47px;
+                  padding-left: 5px !important;
+                  padding-top: 12px !important;
+               }
+
+               .day {
+                  height: 47px;
+               }
+            }
+
+            @media only screen and (max-width: 414px) {
+               .tb_row {
+                  padding-left: 32px !important;
+               }
+            }
             </style>
             <div class="table-responsive">
-               <table class="table table-striped table-bordered text-center table-hover nowrap dataTable" style="
-                      
-                     ">
+               <table class="table table-bordered table-striped table-hover text-center">
                   <thead style="font-size: 18px;background-color:#FBC503;">
                      <tr>
-                        <th style="font-size: 18px;background-color:#FBC503;" class="headcol">DATE</th>
+                        <th style="font-size: 18px;background-color:red;color:#fff;" class="headcol">DATE</th>
                         <?php
                         $catId = DB::table('category')->select('id', 'name')->get()->toArray();
 
@@ -260,7 +282,7 @@
                         //   print_r($row);
                         ?>
 
-                        <th width="200px">{{ strtoupper($row['name']) }}</th>
+                        <th class="tb_row">{{ strtoupper($row['name']) }}</th>
                         <?php
                         continue;
                         ?>
@@ -281,7 +303,7 @@
                               break;
                            }
                            ?>
-                           <td class="headcol">{{ $day }}</td>
+                           <td class="headcol day" style="background:red;color:#fff;">{{ $day }}</td>
                            <?php
 
                            $catId = DB::table('category')->get();

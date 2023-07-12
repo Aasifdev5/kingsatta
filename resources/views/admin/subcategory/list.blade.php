@@ -109,7 +109,7 @@
                               // $user=    explode(",",$user['0']);
 
                               $date = date('Y-m-d');
-                              $prev_date = date('Y-m-d', strtotime($date . ' -12 day'));
+                              $prev_date = date('Y-m-d', strtotime($date . ' -20 day'));
 
                               $sql = "SELECT * FROM `subcategory` where cat_id in (" . $user['0']['category_id'] . ") and date between '" . $prev_date . "' and '" . $date . "'   order by id desc";
                               $today_data = DB::select($sql);

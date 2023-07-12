@@ -65,7 +65,7 @@
                               <td>
                                  <div class="btn-group" role="group">
                                     <div class="btn-group float-right" role="group">
-                                       <a href="{{ url('edit_distributor', $row->id) }}"
+                                       <a href="{{ url('items/edit', $row->id) }}"
                                           class="btn btn-outline-primary btn-sm rounded-circle">
                                           <i class="fas fa-edit"></i>
                                        </a>
@@ -73,7 +73,7 @@
 
                                     <br>
                                     <div class="btn-group float-right" role="group">
-                                       <a href="{{url('delete_user',$row->id)}}"
+                                       <a href="{{url('items',$row->id)}}"
                                           class="btn btn-outline-danger btn-sm rounded-circle">
                                           <i class="fas fa-trash"></i>
                                        </a>
