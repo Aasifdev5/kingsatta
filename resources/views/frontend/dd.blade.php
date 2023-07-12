@@ -42,9 +42,9 @@
    <section id="hero" class="d-flex justify-cntent-center align-items-center">
 
       <!-- Slide 1 -->
-      <a style="position:fixed; bottom:20px;right:8px;">&nbsp;<input
+      <a style="position:fixed; bottom:20px;right:8px;" href="https://akingsatta.com/">&nbsp;<input
             style="border:#e7aa26 1px solid; background:#FBC503; color:Red; height:auto; padding:8px; font-weight:bold;"
-            id="Refresh" name="Refresh" value="Refresh" type="submit" onclick="window.location.reload()">&nbsp;</a>
+            id="Refresh" name="Refresh" value="Refresh" type="submit">&nbsp;</a>
 
       <div class="header">
          <img src="https://akingsatta.com/satta.png" height="150px">
@@ -366,16 +366,296 @@
 
                         <tr class="option">
                            <td class="e-link bg-info" title="March-2023 Satta Result Chart With Record" colspan="5">
+                              <?php
+                              if (isset($_GET['date']) && $_GET['date'] == "12") {
+
+                                 $m = '11';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "November " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "11") {
+
+                                 $m = '10';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "October " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "10") {
+
+                                 $m = '09';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "September " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "09") {
+
+                                 $m = '08';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "August " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "08") {
+
+                                 $m = '07';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "July " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "07") {
+
+                                 $m = '06';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "June " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "06") {
+
+                                 $m = '05';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "May " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+
+                              if (isset($_GET['date']) && $_GET['date'] == "05") {
+
+                                 $m = '04';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "April " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "04") {
+
+                                 $m = '03';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "March " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "03") {
+
+                                 $m = '02';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "FEB " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "02") {
+
+                                 $m = '01';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "January " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (empty($_GET['date'])) {
+                              ?>
                               <a
                                  href="/page/{{$categoryId}}<?php echo '?date=' . date('m', strtotime('last month')); ?>">
                                  <h1 class="aero">{{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</h1>
                               </a>
+                              <?php
+                              }
+                              ?>
+
                            </td>
                            <td class="s-link" colspan="1"></td>
                            <td class="e-link bg-info" title="May-2023 Satta Result Chart With Record" colspan="5">
+                              <?php
+                              if (isset($_GET['date']) && $_GET['date'] == "11") {
+
+                                 $m = '12';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "December " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "10") {
+
+                                 $m = '11';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "November " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "09") {
+
+                                 $m = '10';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "October " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "08") {
+
+                                 $m = '09';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "September " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "07") {
+
+                                 $m = '08';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "August " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "06") {
+
+                                 $m = '07';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "July " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "05") {
+
+                                 $m = '06';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "June " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+
+                              if (isset($_GET['date']) && $_GET['date'] == "04") {
+
+                                 $m = '05';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "May " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "03") {
+
+                                 $m = '04';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "April " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "02") {
+
+                                 $m = '03';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "March " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (isset($_GET['date']) && $_GET['date'] == "01") {
+
+                                 $m = '02';
+                                 date($m . 'Y');
+                              ?>
+                              <a href="<?php echo '?date=' . date($m); ?>">
+                                 <h1 class="aero"><?php
+
+                                                      echo "FEB " . date('Y'); ?></h1>
+                              </a>
+                              <?php
+                              }
+                              if (empty($_GET['date'])) {
+                              ?>
                               <a href="/page/{{$categoryId}}">
                                  <h1 class="aero">{{ \Carbon\Carbon::now()->addMonth()->format('M Y') }}</h1>
                               </a>
+                              <?php
+                              }
+                              ?>
+
                            </td>
                         </tr>
                   </tbody>
