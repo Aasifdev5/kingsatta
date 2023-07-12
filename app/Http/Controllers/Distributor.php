@@ -17,7 +17,7 @@ class Distributor extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.user.change_password');
     }
 
     /**
@@ -25,9 +25,20 @@ class Distributor extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $request->validate([
+            'password' => 'required',
+
+        ]);
+
+        #Update the new Password
+        $data = User::where('id', '=', $request->id)->update([
+            'password' => FacadesHash::make($request->password)
+
+        ]);
+        return redirect('dashboard')->with('success', 'Successfully Updated');
     }
 
     /**

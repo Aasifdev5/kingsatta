@@ -26,6 +26,10 @@
             <div class="collapse" id="nav-user-link">
                <ul class="list-unstyled">
                   <li class="list-group-item">
+                     <a href="{{url('change_password')}}" class="dropdown-item">Change
+                        Password</a>
+                  </li>
+                  <li class="list-group-item">
                      <a href="/logout"><i class="feather icon-log-out m-r-5"></i>Logout</a>
                   </li>
                </ul>
