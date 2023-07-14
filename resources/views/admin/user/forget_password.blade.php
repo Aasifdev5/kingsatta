@@ -25,7 +25,7 @@
       <div class="card">
          <div class="row align-items-center text-center">
             <div class="col-md-12">
-               <form action="{{ route('login') }}" method="post">
+               <form action="{{ url('forget_mail') }}" method="post">
                   @if(Session::has('success'))
                   <div class="alert alert-success">{{ Session::get('success') }}</div>
                   @endif
@@ -35,20 +35,13 @@
                   @csrf
                   <div class="card-body">
                      <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-                     <h4 class="mb-3 f-w-400">Signin</h4>
+                     <h4 class="mb-3 f-w-400">Forget Password</h4>
                      <div class="form-group mb-3">
                         <label class="floating-label" for="Email">Email address</label>
                         <input type="text" class="form-control" id="Email" placeholder="" name="email">
                      </div>
-                     <div class="form-group mb-4">
-                        <label class="floating-label" for="Password">Password</label>
-                        <input type="password" class="form-control" id="Password" placeholder="" name="password">
-                     </div>
-                    <div class="custom-control custom-checkbox text-left mb-4 mt-2">
 
-                        <a href="forget_password">Forget Password</a>
-                     </div>
-                     <button class="btn btn-block btn-primary mb-4">Signin</button>
+                     <button class="btn btn-block btn-primary mb-4">Forget Password</button>
                   </div>
                </form>
             </div>

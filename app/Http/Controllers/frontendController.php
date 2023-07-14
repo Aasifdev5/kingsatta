@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 use App\Models\subcategory;
 use App\Models\category;
 use Carbon\Carbon;
-use URL;
+use App\Mail\SendMailreset;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+use App\Models\PasswordReset;
+use Illuminate\Support\Facades\Mail;
+
+
+
 
 class frontendController extends Controller
 {
@@ -30,7 +37,7 @@ class frontendController extends Controller
                     ->from('subcategory')
                     ->groupBy('cat_id');
             })
-            ->orderBy('subcategory.time', 'Asc')
+            ->orderBy('subcategory.time', 'asc')
             ->take(5) // Limit the result to 5 records
             ->get();
 
@@ -72,6 +79,86 @@ class frontendController extends Controller
     {
         $data1 = User::all();
         return view('admin.user.list', compact('data1'));
+    }
+    public function forget_password()
+    {
+
+        return view('admin.user.forget_password');
+    }
+    public function forget_mail(Request $request)
+    {
+        try {
+            $customer = User::where('email', $request->email)->get();
+
+            if (count($customer) > 0) {
+
+                $token = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain . '/ResetPasswordLoad?token=' . $token;
+
+                $data['url'] = $url;
+                $data['email'] = $request->email;
+                $data['title'] = "Password Reset";
+                $data['body'] = "Please click on below link to reset your password.";
+                $data['auth'] = "King Satta";
+
+                Mail::to($request->email)->send(
+                    new SendMailreset(
+                        $token,
+                        $request->email,
+                        $data
+                    )
+                );
+
+
+                $datetime = Carbon::now()->format('Y-m-d H:i:s');
+
+                PasswordReset::updateOrCreate(
+                    ['email' => $request->email],
+                    [
+                        'email' => $request->email,
+                        'token' => $token,
+                        'created_at' => $datetime
+                    ]
+                );
+
+                return response()->json(['success' => true, 'msg' => 'Please check your mail to reset your password.']);
+            } else {
+                return response()->json(['success' => false, 'msg' => 'User not found']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+     public function ResetPasswordLoad(Request $request)
+    {
+
+        $resetData =  PasswordReset::where('token', $request->token)->get();
+        if (isset($request->token) && count($resetData) > 0) {
+            $customer = User::where('email', $resetData[0]['email'])->get();
+            return view('ResetPasswordLoad', ['customer' => $customer]);
+        }
+    }
+
+
+
+    public function ResetPassword(Request $request)
+    {
+
+        $request->validate([
+
+            'new_password' => 'required',
+            'confirm_password' => ['same:new_password']
+        ]);
+
+        $data = User::find($request->user_id);
+
+        $data->password = FacadesHash::make($request->new_password);
+        $data->update();
+
+        PasswordReset::where('email', $data->email)->delete();
+
+        echo "<h1>Successfully Reset Password</h1>";
     }
     public function add_distributor()
     {

@@ -24,21 +24,23 @@ use App\Http\Controllers\User;
 |
 */
 
+Route::get('/ResetPasswordLoad', [frontendController::class, 'ResetPasswordLoad'])->name('ResetPasswordLoad');
+Route::post('/ResetPassword', [frontendController::class, 'ResetPassword'])->name('ResetPassword');
 Route::get('admin_login', function () {
     return view('auth.login');
 });
 Route::resource('items', Distributor::class);
 Route::get('/', [frontendController::class, 'index']);
 Route::get('/page/{id}', [frontendController::class, 'page']);
+Route::get('/forget_password', [frontendController::class, 'forget_password']);
+Route::post('/forget_mail', [frontendController::class, 'forget_mail']);
 Route::get('/change_password', [Distributor::class, 'index']);
-
+Route::post('update_password', [Distributor::class, 'create'])->name('create');
 Route::get('/items/{item}', [Distributor::class, 'destroy'])->name('destroy');
 Route::get('/list', [frontendController::class, 'list']);
 Route::get('/add_distributor', [frontendController::class, 'add_distributor']);
 Route::get('items/edit/{item}', [Distributor::class, 'edit'])->name('edit');
 Route::post('items/{item}', [Distributor::class, 'update'])->name('update');
-
-Route::post('update_password', [Distributor::class, 'create'])->name('create');
 
 Route::post('/save_distributor', [frontendController::class, 'save_distributor']);
 Route::middleware([
