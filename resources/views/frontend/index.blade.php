@@ -1957,15 +1957,22 @@
                               </td>
                               <td><?php
                                     if (isset($lastnumber['0']) && !empty($lastnumber['0'])) {
-
-                                       echo  $lastnumber['0'];
+                                       if ($lastnumber['0'] == "100") {
+                                          echo "00";
+                                       } else {
+                                          echo  $lastnumber['0'];
+                                       }
                                     } else {
                                        echo "XX";
                                     }
                                     ?></td>
                               <td><?php
                                     if (isset($todaynumber['0']) && !empty($todaynumber['0'])) {
-                                       echo  $todaynumber['0'];
+                                       if ($todaynumber['0'] == "100") {
+                                          echo "00";
+                                       } else {
+                                          echo  $todaynumber['0'];
+                                       }
                                     } else {
                                        echo "XX";
                                     }
@@ -2042,15 +2049,22 @@
                               </td>
                               <td><?php
                                     if (isset($lastnumber['0']) && !empty($lastnumber['0'])) {
-
-                                       echo  $lastnumber['0'];
+                                       if ($lastnumber['0'] == "100") {
+                                          echo "00";
+                                       } else {
+                                          echo  $lastnumber['0'];
+                                       }
                                     } else {
                                        echo "XX";
                                     }
                                     ?></td>
                               <td><?php
                                     if (isset($todaynumber['0']) && !empty($todaynumber['0'])) {
-                                       echo  $todaynumber['0'];
+                                       if ($todaynumber['0'] == "100") {
+                                          echo "00";
+                                       } else {
+                                          echo  $todaynumber['0'];
+                                       }
                                     } else {
                                        echo "XX";
                                     }
@@ -2322,11 +2336,15 @@
                                        if ($row['number'] == 0) {
                                           echo "XX";
                                        } else {
-                                          $count = strlen($row['number']);
-                                          if ($count > 1) {
-                                             echo $row['number'];
+                                          if ($row['number'] == "100") {
+                                             echo "00";
                                           } else {
-                                             echo '0' . $row['number'];
+                                             $count = strlen($row['number']);
+                                             if ($count > 1) {
+                                                echo $row['number'];
+                                             } else {
+                                                echo '0' . $row['number'];
+                                             }
                                           }
                                        }
 

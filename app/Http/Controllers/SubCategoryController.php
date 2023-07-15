@@ -43,13 +43,8 @@ class SubCategoryController extends Controller
         $sql = "SELECT * FROM `category` where id='" . $request->input('data1') . "' ";
         $time = DB::select($sql);
         $time = array_column($time, 'time', '0');
-        // print_r($time);
-        // die;
         $subcategory->cat_id = $request->input('data1');
         $subcategory->date = $request->input('date');
-        // $selectedTime = $request->input('time');
-        // $selectedAMPM = $request->input('ampm');
-
         $subcategory->time = $time['0'];
         $subcategory->number = $request->input('number');
 
@@ -77,11 +72,12 @@ class SubCategoryController extends Controller
     public function updatesubcategory(Request $request, $id)
     {
         $data = subcategory::findOrFail($id);
+        $sql = "SELECT * FROM `category` where id='" . $request->input('data1') . "' ";
+        $time = DB::select($sql);
+        $time = array_column($time, 'time', '0');
         $data->cat_id = $request->input('data1');
         $data->date = $request->input('date');
-        // $selectedTime = $request->input('time');
-        // $selectedAMPM = $request->input('ampm');
-        // $data->time = $selectedTime . ' ' . $selectedAMPM;
+        $data->time = $time['0'];
         $data->number = $request->input('number');
         $data->update();
         $datas = subcategory::all();
