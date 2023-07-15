@@ -40,13 +40,17 @@ class SubCategoryController extends Controller
             return back()->with('error', 'it can not created because it already exits.');
         }
         $subcategory = new subcategory;
-
+        $sql = "SELECT * FROM `category` where id='" . $request->input('data1') . "' ";
+        $time = DB::select($sql);
+        $time = array_column($time, 'time', '0');
+        // print_r($time);
+        // die;
         $subcategory->cat_id = $request->input('data1');
         $subcategory->date = $request->input('date');
         // $selectedTime = $request->input('time');
         // $selectedAMPM = $request->input('ampm');
 
-        // $subcategory->time = $selectedTime . ' ' . $selectedAMPM;
+        $subcategory->time = $time['0'];
         $subcategory->number = $request->input('number');
 
 
