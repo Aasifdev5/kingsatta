@@ -1905,7 +1905,7 @@
 
                   <div class="table-h2" style="text-align: center;">Last Updated Result:
                      <?php
-                     $sql = "SELECT max(updated_at) as last_update FROM `subcategory`;";
+                     $sql = "SELECT max(updated_at) as last_update FROM `subcategory`";
                      $today_data = DB::select($sql);
                      $lastupdate = array_column($today_data, 'last_update', '0');
 
@@ -1935,18 +1935,18 @@
                         $current_date = date('Y-m-d');
                         $date = date('Y-m-d');
                         $prev_date = date('Y-m-d', strtotime($date . ' -1 day'));
-                        $catId = DB::table('category')->orderBy('time', 'Asc')->get();
+                        $catId = DB::table('category')->where('status', '1')->orderBy('time', 'Asc')->get();
 
                         $catId = json_decode(json_encode($catId), 'true');
-                        echo  $last_update = "SELECT * FROM `subcategory` where date='" . $current_date . "' order by time DESC limit 2";
+                        $last_update = "SELECT * FROM `subcategory` where date='" . $current_date . "' and status=1 order by time DESC limit 2";
                         $data = DB::select($last_update);
 
                         foreach ($data as  $value) {
-                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $value->cat_id . " and date='" . $prev_date . "' order by time asc";
+                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $value->cat_id . " and date='" . $prev_date . "' and status=1 order by time asc";
                            $previous_data = DB::select($sql);
                            $lastnumber = array_column($previous_data, 'number', '0');
 
-                           $name = DB::select("SELECT * FROM `category` where id=" . $value->cat_id . "");
+                           $name = DB::select("SELECT * FROM `category` where id=" . $value->cat_id . " and status=1");
                            $name = array_column($name, 'name', '0');
                            // echo "<pre>";
                            // print_r($previous_data);
@@ -1955,7 +1955,7 @@
                         <tr>
                            <td>{{ $name['0'] }} <br>
                               <div class="table-link">at {{ date("h:i A", strtotime($value->time)) }}<a
-                                    href="/page/{{$value->id}}"> Record chart</a>
+                                    href="/page/{{$value->cat_id}}"> Record chart</a>
                               </div>
                            </td>
                            <td><?php
@@ -1986,9 +1986,9 @@
                         <?php
                         }
                         foreach ($catId as $row) {
-                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "' order by time asc";
+                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "' and status=1 order by time asc";
                            $today_data = DB::select($sql);
-                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $prev_date . "' order by time asc";
+                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $prev_date . "' and status=1 order by time asc";
                            $previous_data = DB::select($sql);
                            $todaynumber = array_column($today_data, 'number', '0');
                            $lastnumber = array_column($previous_data, 'number', '0');
@@ -1998,7 +1998,7 @@
                            // echo "</pre>";
 
                            if ($row['time'] > $current_time) {
-                              $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "' and time >'" . $current_time . "'  order by time asc";
+                              $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "' and time >'" . $current_time . "' and status=1 order by time asc";
                               $today_data = DB::select($sql);
                            ?>
                         <tr>
@@ -2077,14 +2077,14 @@
                         $current_date = date('Y-m-d');
                         $date = date('Y-m-d');
                         $prev_date = date('Y-m-d', strtotime($date . ' -1 day'));
-                        $catId = DB::table('category')->orderBy('time', 'Asc')->get();
+                        $catId = DB::table('category')->where('status', '1')->orderBy('time', 'Asc')->get();
 
                         $catId = json_decode(json_encode($catId), 'true');
 
                         foreach ($catId as $row) {
-                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "'";
+                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $current_date . "' and status=1";
                            $today_data = DB::select($sql);
-                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $prev_date . "'";
+                           $sql = "SELECT * FROM `subcategory` where cat_id=" . $row['id'] . " and date='" . $prev_date . "' and status=1";
                            $previous_data = DB::select($sql);
                            $todaynumber = array_column($today_data, 'number', '0');
                            $lastnumber = array_column($previous_data, 'number', '0');
@@ -2324,7 +2324,7 @@
                         <th style="font-size: 18px;background-color:red;color:#fff;" class="headcol date">DATE</th>
                         <?php
                         // DB::table('category')->orderBy('time', 'Asc')->get();
-                        $catId = DB::table('category')->orderBy('time', 'Asc')->get();
+                        $catId = DB::table('category')->where('status', '1')->orderBy('time', 'Asc')->get();
 
                         $catId = json_decode(json_encode($catId), 'true');
 
@@ -2380,7 +2380,8 @@
 
                            $sql1 = "WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "') SELECT id,name,sum(num) as number FROM acs GROUP BY id ORDER BY time ASC";
                            $sql = "WITH acs AS ( SELECT c.time,c.id,c.name,0 as num FROM `category` c UNION ALL SELECT sc.time,c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "' ) SELECT id,name,sum(num) as number FROM acs GROUP BY id ORDER BY time ASC;";
-                           $data1 = DB::select($sql);
+                           $sql3 = "WITH acs AS (SELECT c.time,c.id,c.name,c.status,0 as num FROM `category` c UNION ALL SELECT sc.time,c.id,c.name,c.status,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "'  and sc.status='1') SELECT id,name,status,sum(num) as number FROM acs where status='1' GROUP BY id ORDER BY time ASC;";
+                           $data1 = DB::select($sql3);
 
                            $data1 = json_decode(json_encode($data1), true);
 

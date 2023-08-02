@@ -155,7 +155,7 @@
                         $current_date = date('Y-m-d');
                         $date = date('Y-m-d');
                         $prev_date = date('Y-m-d', strtotime($date . ' -1 day'));
-                        $catId = DB::table('category')->orderBy('time', 'Asc')->get();
+                        $catId = DB::table('category')->where('status', '1')->orderBy('time', 'Asc')->get();
 
                         $catId = json_decode(json_encode($catId), 'true');
 
@@ -385,7 +385,7 @@
                      <tr>
                         <th style="font-size: 18px;background-color:red;color:#fff;" class="headcol">DATE</th>
                         <?php
-                        $catId = DB::table('category')->select('id', 'name')->get()->toArray();
+                        $catId = DB::table('category')->where('status', '1')->select('id', 'name')->get()->toArray();
 
                         // dd($catId);
                         $value = $key;
@@ -445,8 +445,9 @@
                               $date = date('Y-m-' . $day);
                            }
 
-                           $sql1 = "WITH acs AS ( SELECT c.id,c.name,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "') SELECT id,name,sum(num) as number FROM acs GROUP BY id";
-                           $data = DB::select($sql1);
+                           $sql1 = "WITH acs AS ( SELECT c.id,c.name,c.status,0 as num FROM `category` c UNION ALL SELECT c.id,c.name,c.status,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "') SELECT id,name,status,sum(num) as number FROM acs where status='1' GROUP BY id";
+                           $sql3 = "WITH acs AS (SELECT c.time,c.id,c.name,c.status,0 as num FROM `category` c UNION ALL SELECT sc.time,c.id,c.name,c.status,sc.number as num FROM category c INNER JOIN subcategory sc ON c.id=sc.cat_id where sc.date='" . $date . "'  and sc.status='1') SELECT id,name,status,sum(num) as number FROM acs where status='1' GROUP BY id ORDER BY time ASC;";
+                           $data = DB::select($sql3);
                            // $date = array_column($data, 'date', '0');
                            // echo $date['0'];
                            $value = $key;

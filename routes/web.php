@@ -75,7 +75,8 @@ Route::middleware([
     Route::get('/editcategory/{id}', [CategoryController::class, 'editcategory']);
     Route::put('/updatecategory/{id}', [CategoryController::class, 'updatecategory']);
     Route::get('/deletecategory/{id}', [CategoryController::class, 'deletecategory']);
-
+    Route::get('/active/{id}', [CategoryController::class, 'activeInactive']);
+    Route::get('/inactive/{id}', [CategoryController::class, 'Inactive']);
 
     Route::get('/addsubcategory', [SubCategoryController::class, 'addsubcategory']);
     Route::post('/savesubcategory', [SubCategoryController::class, 'savesubcategory']);

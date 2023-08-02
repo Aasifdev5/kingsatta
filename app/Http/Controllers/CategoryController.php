@@ -7,8 +7,6 @@ use DB;
 use App\Models\category;
 use App\Models\subcategory;
 
-
-
 class CategoryController extends Controller
 {
 
@@ -24,6 +22,26 @@ class CategoryController extends Controller
     return view('admin.category.add');
   }
 
+
+  public function activeInactive($id)
+  {
+    $sdata = subcategory::where("cat_id", $id)->update(["status" => 1]);
+    $data = category::findOrFail($id);
+    $data->status = '1';
+    $data->update();
+
+    return redirect('listcategory');
+  }
+
+  public function Inactive($id)
+  {
+    $sdata = subcategory::where("cat_id", $id)->update(["status" => 0]);
+    $data = category::findOrFail($id);
+    $data->status = '0';
+    $data->update();
+
+    return redirect('listcategory');
+  }
 
   public function savecategory(Request $request)
   {
